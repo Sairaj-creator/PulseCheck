@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - db-data:/usr/src/app/data
+    environment:
+      - PORT=3000
+      - DB_PATH=data/pulsecheck.db
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  db-data:
