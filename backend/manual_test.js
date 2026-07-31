@@ -1,5 +1,5 @@
 const { initDb, getDb } = require('./db');
-const { startPoller, pingTarget } = require('./poller');
+const { pingTarget } = require('./poller');
 const app = require('./app');
 const request = require('supertest');
 

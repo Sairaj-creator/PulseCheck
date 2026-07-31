@@ -1,4 +1,4 @@
-const { initDb, getDb } = require('../db');
+const { initDb } = require('../db');
 
 describe('Uptime Calculation Logic', () => {
   let db;

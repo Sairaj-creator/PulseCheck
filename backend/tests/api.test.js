@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../app');
-const { initDb, getDb } = require('../db');
+const { initDb } = require('../db');
 const { stopAllPollers, pingTarget } = require('../poller');
 const axios = require('axios');
 

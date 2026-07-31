@@ -90,7 +90,7 @@ function startAllPollers() {
 }
 
 function stopAllPollers() {
-  for (const [id, intervalId] of activePollers.entries()) {
+  for (const [, intervalId] of activePollers.entries()) {
     clearInterval(intervalId);
   }
   activePollers.clear();
