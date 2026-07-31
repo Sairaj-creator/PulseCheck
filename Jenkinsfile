@@ -11,13 +11,15 @@ pipeline {
     stages {
         stage('Lint') {
             steps {
-                dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run lint'
-                }
-                dir('backend') {
-                    sh 'npm install'
-                    sh 'npm run lint'
+                retry(3) {
+                    dir('frontend') {
+                        sh 'npm install'
+                        sh 'npm run lint'
+                    }
+                    dir('backend') {
+                        sh 'npm install'
+                        sh 'npm run lint'
+                    }
                 }
             }
         }
