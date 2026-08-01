@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PulseCheck Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#00a572",
+                      "secondary-fixed-dim": "#4edea3",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "outline": "#908fa0",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed": "#40000d",
+                      "background": "#131315",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "surface-container-high": "#2a2a2c",
+                      "on-primary-container": "#0d0096",
+                      "surface-container-lowest": "#0e0e10",
+                      "inverse-on-surface": "#313032",
+                      "tertiary": "#ffb2b7",
+                      "surface-variant": "#353437",
+                      "on-tertiary-container": "#5b0017",
+                      "on-tertiary": "#67001b",
+                      "primary-fixed": "#e1e0ff",
+                      "inverse-primary": "#494bd6",
+                      "on-secondary-fixed": "#002113",
+                      "error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#005236",
+                      "primary-container": "#8083ff",
+                      "on-primary": "#1000a9",
+                      "surface": "#131315",
+                      "surface-container-low": "#1c1b1d",
+                      "on-secondary-container": "#00311f",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "outline-variant": "#464554",
+                      "tertiary-fixed": "#ffdadb",
+                      "on-primary-fixed": "#07006c",
+                      "surface-bright": "#39393b",
+                      "secondary": "#4edea3",
+                      "surface-tint": "#c0c1ff",
+                      "surface-container": "#201f22",
+                      "surface-container-highest": "#353437",
+                      "on-surface": "#e5e1e4",
+                      "inverse-surface": "#e5e1e4",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-surface-variant": "#c7c4d7",
+                      "tertiary-container": "#ff516a",
+                      "primary": "#c0c1ff",
+                      "on-error": "#690005",
+                      "on-background": "#e5e1e4",
+                      "on-secondary": "#003824",
+                      "surface-dim": "#131315",
+                      "on-primary-fixed-variant": "#2f2ebe",
+                      "on-error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "unit": "4px",
+                      "stack-lg": "32px",
+                      "gutter": "16px",
+                      "container-padding": "24px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "10px",
+                              {
+                                      "lineHeight": "12px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .pulse-dot-green {
+            box-shadow: 0 0 8px 2px rgba(78, 222, 163, 0.4);
+            animation: pulse-green 2s infinite;
+        }
+        .pulse-dot-red {
+            box-shadow: 0 0 8px 2px rgba(255, 180, 171, 0.4);
+            animation: pulse-red 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(78, 222, 163, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(78, 222, 163, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(78, 222, 163, 0); }
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 180, 171, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 180, 171, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 180, 171, 0); }
+        }
+
+        .glass-panel {
+            background: rgba(42, 42, 44, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-surface-container dark:bg-surface-container text-secondary dark:text-secondary font-label-md text-label-md fixed left-0 top-0 h-full w-60 border-r border-outline-variant flat no shadows flex flex-col h-full py-stack-md z-20">
+<div class="px-container-padding mb-stack-lg flex items-center gap-stack-sm">
+<span class="material-symbols-outlined font-headline-md text-headline-md font-bold text-on-surface">dns</span>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">PulseCheck</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Global Monitoring</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-unit px-gutter">
+<a class="flex items-center gap-stack-sm px-gutter py-stack-sm bg-primary-container text-on-primary-container rounded-lg cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-stack-sm px-gutter py-stack-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all rounded-lg cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined">warning</span>
+                Incidents
+            </a>
+<a class="flex items-center gap-stack-sm px-gutter py-stack-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all rounded-lg cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+                Metrics
+            </a>
+<a class="flex items-center gap-stack-sm px-gutter py-stack-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all rounded-lg cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined">dns</span>
+                Infrastructure
+            </a>
+<a class="flex items-center gap-stack-sm px-gutter py-stack-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all rounded-lg cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+                Alerts
+            </a>
+</div>
+<div class="flex flex-col gap-unit px-gutter mt-auto pt-stack-md border-t border-outline-variant">
+<a class="flex items-center gap-stack-sm px-gutter py-stack-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all rounded-lg cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+                Docs
+            </a>
+<a class="flex items-center gap-stack-sm px-gutter py-stack-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-all rounded-lg cursor-pointer duration-200" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+                Support
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-60 flex-1 flex flex-col h-full bg-background overflow-y-auto">
+<!-- TopNavBar (Shared Component - Adapted for Main Canvas Header) -->
+<header class="bg-surface dark:bg-surface text-primary dark:text-primary font-body-md text-body-md w-full h-16 border-b border-outline-variant flat no shadows flex justify-between items-center px-container-padding sticky top-0 z-10">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">PulseCheck Dashboard</h2>
+<div class="flex items-center gap-stack-md">
+<button class="text-on-surface-variant hover:bg-surface-variant transition-colors p-unit rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-variant transition-colors p-unit rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-variant transition-colors p-unit rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden ml-stack-sm">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A macro photography shot of a sleek, abstract metallic sphere reflecting cool indigo and teal lights, suitable for a highly technical user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Y5XmMeXzbJQFVBjmFiy1Fi26qya16fpnIwpxmNppOJRNWmfRzqXcyjPsx1r7xudjwws7OPiBQapjokM-bmOSFkXAC0T6o1YgR47RwSkH-BwEgpq0efGTyZeJw2KfeipweS75S_KNhyfs_5chaBPhKgXs6XvC_q_kP6KPncm25MRh8Ljjs65LUaEZsqJKZN1hIXNTXFnieAoxtjn90p6u_yMOSCJyb0wMi2BULYy-rSwA9DuZVE70"/>
+</div>
+</div>
+</header>
+<div class="p-container-padding flex-1 flex flex-col gap-stack-lg max-w-7xl mx-auto w-full">
+<!-- Add Target Card -->
+<section class="bg-surface-container-high rounded-xl border border-outline-variant overflow-hidden transition-colors duration-200 hover:border-outline">
+<div class="px-container-padding py-stack-sm border-b border-outline-variant bg-surface-container/50">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Add Target</h3>
+</div>
+<div class="p-container-padding">
+<form class="flex flex-col md:flex-row gap-gutter items-end">
+<div class="flex-1 w-full flex flex-col gap-unit">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Name (e.g. Google)</label>
+<input class="w-full bg-surface-lowest border border-outline-variant rounded-md px-stack-sm py-2 text-on-surface font-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder:text-on-surface-variant/50" placeholder="Service Name" type="text"/>
+</div>
+<div class="flex-[2] w-full flex flex-col gap-unit">
+<label class="font-label-sm text-label-sm text-on-surface-variant">URL (e.g. https://google.com)</label>
+<input class="w-full bg-surface-lowest border border-outline-variant rounded-md px-stack-sm py-2 text-on-surface font-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all placeholder:text-on-surface-variant/50" placeholder="https://" type="url"/>
+</div>
+<div class="w-full md:w-32 flex flex-col gap-unit">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Interval (s)</label>
+<input class="w-full bg-surface-lowest border border-outline-variant rounded-md px-stack-sm py-2 text-on-surface font-label-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all" type="number" value="60"/>
+</div>
+<button class="w-full md:w-auto bg-primary-container text-on-primary-container hover:bg-primary transition-colors px-container-padding py-2 rounded-md font-body-md font-medium whitespace-nowrap active:scale-95 duration-100 border border-primary-fixed-dim shadow-[0_0_12px_rgba(128,131,255,0.2)] hover:shadow-[0_0_16px_rgba(128,131,255,0.4)]" type="button">
+                            Add Target
+                        </button>
+</form>
+</div>
+</section>
+<!-- Monitored Targets Card -->
+<section class="bg-surface-container-high rounded-xl border border-outline-variant overflow-hidden flex-1 flex flex-col">
+<div class="px-container-padding py-stack-sm border-b border-outline-variant bg-surface-container/50 flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Monitored Targets</h3>
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="font-label-sm text-label-sm flex items-center gap-unit"><div class="w-2 h-2 rounded-full bg-secondary"></div> 1 Online</span>
+<span class="font-label-sm text-label-sm flex items-center gap-unit"><div class="w-2 h-2 rounded-full bg-error"></div> 1 Offline</span>
+</div>
+</div>
+<div class="w-full overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container/30">
+<th class="py-stack-sm px-gutter font-label-sm text-label-sm text-on-surface-variant w-16">Status</th>
+<th class="py-stack-sm px-gutter font-label-sm text-label-sm text-on-surface-variant">Name</th>
+<th class="py-stack-sm px-gutter font-label-sm text-label-sm text-on-surface-variant text-right">Uptime (Last 100)</th>
+<th class="py-stack-sm px-gutter font-label-sm text-label-sm text-on-surface-variant text-right">Avg Response (ms)</th>
+<th class="py-stack-sm px-gutter font-label-sm text-label-sm text-on-surface-variant w-48">Recent Responses</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1: UP -->
+<tr class="hover:bg-surface-variant/50 transition-colors group">
+<td class="py-stack-md px-gutter text-center">
+<div class="w-3 h-3 rounded-full bg-secondary pulse-dot-green mx-auto"></div>
+</td>
+<td class="py-stack-md px-gutter">
+<div class="font-body-md text-on-surface font-medium group-hover:text-primary transition-colors">Leetcode</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">https://leetcode.com</div>
+</td>
+<td class="py-stack-md px-gutter text-right">
+<span class="font-label-md text-label-md text-secondary">99.9%</span>
+</td>
+<td class="py-stack-md px-gutter text-right">
+<span class="font-label-md text-label-md text-on-surface">124 ms</span>
+</td>
+<td class="py-stack-md px-gutter">
+<div class="flex items-end gap-1 h-8 w-full">
+<!-- Sparkline Mock -->
+<div class="flex-1 bg-secondary/80 h-full rounded-sm hover:bg-secondary transition-colors" title="120ms"></div>
+<div class="flex-1 bg-secondary/80 h-[90%] rounded-sm hover:bg-secondary transition-colors" title="110ms"></div>
+<div class="flex-1 bg-secondary/80 h-[95%] rounded-sm hover:bg-secondary transition-colors" title="115ms"></div>
+<div class="flex-1 bg-secondary/80 h-[100%] rounded-sm hover:bg-secondary transition-colors" title="124ms"></div>
+<div class="flex-1 bg-secondary/80 h-[85%] rounded-sm hover:bg-secondary transition-colors" title="105ms"></div>
+<div class="flex-1 bg-secondary/80 h-[90%] rounded-sm hover:bg-secondary transition-colors" title="112ms"></div>
+<div class="flex-1 bg-secondary/80 h-[95%] rounded-sm hover:bg-secondary transition-colors" title="118ms"></div>
+<div class="flex-1 bg-secondary/80 h-[100%] rounded-sm hover:bg-secondary transition-colors" title="124ms"></div>
+</div>
+</td>
+</tr>
+<!-- Row 2: DOWN -->
+<tr class="hover:bg-surface-variant/50 transition-colors group">
+<td class="py-stack-md px-gutter text-center">
+<div class="w-3 h-3 rounded-full bg-error pulse-dot-red mx-auto"></div>
+</td>
+<td class="py-stack-md px-gutter">
+<div class="font-body-md text-on-surface font-medium group-hover:text-error transition-colors">Auth Service</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">api.internal/auth</div>
+</td>
+<td class="py-stack-md px-gutter text-right">
+<span class="font-label-md text-label-md text-error">0.00%</span>
+</td>
+<td class="py-stack-md px-gutter text-right">
+<span class="font-label-md text-label-md text-error">383 ms</span>
+</td>
+<td class="py-stack-md px-gutter">
+<div class="flex items-end gap-1 h-8 w-full">
+<!-- Sparkline Mock - Failing -->
+<div class="flex-1 bg-error/80 h-[40%] rounded-sm hover:bg-error transition-colors" title="timeout"></div>
+<div class="flex-1 bg-surface-container-highest h-full rounded-sm" title="failed"></div>
+<div class="flex-1 bg-surface-container-highest h-full rounded-sm" title="failed"></div>
+<div class="flex-1 bg-surface-container-highest h-full rounded-sm" title="failed"></div>
+<div class="flex-1 bg-surface-container-highest h-full rounded-sm" title="failed"></div>
+<div class="flex-1 bg-surface-container-highest h-full rounded-sm" title="failed"></div>
+<div class="flex-1 bg-surface-container-highest h-full rounded-sm" title="failed"></div>
+<div class="flex-1 bg-surface-container-highest h-full rounded-sm" title="failed"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+</body></html>

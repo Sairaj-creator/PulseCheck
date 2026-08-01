@@ -6,7 +6,7 @@ const { startAllPollers } = require('./poller');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const dbPath = process.env.DB_PATH || 'pulsecheck.db';
 
 // Ensure data directory exists if dbPath is in a subdirectory

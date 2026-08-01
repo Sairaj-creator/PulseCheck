@@ -24,7 +24,7 @@ async function notifySlack(target, newStatus) {
 
 async function pingTarget(target) {
   const db = getDb();
-  const start = Date.now();
+  const start = process.hrtime.bigint();
   let success = false;
   let responseTimeMs = 0;
 
@@ -38,10 +38,10 @@ async function pingTarget(target) {
       validateStatus: (status) => status < 500  // treat 2xx/3xx/4xx as 'up', only 5xx is down
     });
     success = response.status < 500;
-    responseTimeMs = Math.max(0, Date.now() - start);
+    responseTimeMs = Number(process.hrtime.bigint() - start) / 1e6;
   } catch (err) {
     success = false;
-    responseTimeMs = Math.max(0, Math.min(Date.now() - start, 10000)); // clamp 0..timeout
+    responseTimeMs = Math.min(Number(process.hrtime.bigint() - start) / 1e6, 10000);
   }
 
   // Record the check
