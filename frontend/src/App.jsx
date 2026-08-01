@@ -32,7 +32,7 @@ function App() {
       });
       setNewTarget({ name: '', url: '', interval_seconds: 60 });
       fetchMetrics();
-    } catch (err) {
+    } catch {
       alert('Failed to add target');
     }
   };

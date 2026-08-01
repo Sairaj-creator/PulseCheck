@@ -62,6 +62,20 @@ pipeline {
                 }
             }
         }
+        stage('Deploy') {
+            steps {
+                script {
+                    def commitSha = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                    
+                    // Re-login to ensure credentials are valid for the deploy script's push of :latest
+                    sh "echo \${DOCKER_HUB_PSW} | docker login -u \${DOCKER_HUB_USR} --password-stdin"
+                    
+                    // Run the deployment and rollback script
+                    sh "chmod +x deploy.sh"
+                    sh "./deploy.sh ${commitSha} \${DOCKER_HUB_USR}"
+                }
+            }
+        }
     }
     
     post {

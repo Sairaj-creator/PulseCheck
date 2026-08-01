@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   backend:
+    image: sairaj312005/pulsecheck-backend:${IMAGE_TAG:-latest}
     build: ./backend
     ports:
       - "3000:3000"
@@ -13,6 +14,7 @@ services:
       - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
       
   frontend:
+    image: sairaj312005/pulsecheck-frontend:${IMAGE_TAG:-latest}
     build: ./frontend
     ports:
       - "8081:80"
