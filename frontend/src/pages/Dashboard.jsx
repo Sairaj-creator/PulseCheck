@@ -151,8 +151,8 @@ function Dashboard() {
                           </td>
                           <td className="py-stack-md px-gutter">
                             <div className="flex items-end gap-1 h-8 w-full">
-                              {target.recent_checks.slice(0, 10).map((time, idx) => {
-                                if (time === null || !isUp && idx === target.recent_checks.length -1) {
+                              {target.recent_checks.slice(-10).map((time, idx, arr) => {
+                                if (time === null || (!isUp && idx === arr.length - 1)) {
                                   return <div key={idx} className="flex-1 bg-surface-container-highest h-full rounded-sm" title="failed"></div>;
                                 }
                                 // Sparkline logic: normalize 0-500ms to 20%-100% height
