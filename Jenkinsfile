@@ -48,17 +48,19 @@ pipeline {
         }
         stage('Push') {
             steps {
-                script {
-                    def commitSha = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                    
-                    // Login to Docker Hub using injected credentials
-                    sh "echo \${DOCKER_HUB_PSW} | docker login -u \${DOCKER_HUB_USR} --password-stdin"
-                    
-                    sh "docker push \${DOCKER_HUB_USR}/pulsecheck-frontend:${commitSha}"
-                    sh "docker push \${DOCKER_HUB_USR}/pulsecheck-frontend:latest-candidate"
-                    
-                    sh "docker push \${DOCKER_HUB_USR}/pulsecheck-backend:${commitSha}"
-                    sh "docker push \${DOCKER_HUB_USR}/pulsecheck-backend:latest-candidate"
+                retry(3) {
+                    script {
+                        def commitSha = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                        
+                        // Login to Docker Hub using injected credentials
+                        sh "echo \${DOCKER_HUB_PSW} | docker login -u \${DOCKER_HUB_USR} --password-stdin"
+                        
+                        sh "docker push \${DOCKER_HUB_USR}/pulsecheck-frontend:${commitSha}"
+                        sh "docker push \${DOCKER_HUB_USR}/pulsecheck-frontend:latest-candidate"
+                        
+                        sh "docker push \${DOCKER_HUB_USR}/pulsecheck-backend:${commitSha}"
+                        sh "docker push \${DOCKER_HUB_USR}/pulsecheck-backend:latest-candidate"
+                    }
                 }
             }
         }
