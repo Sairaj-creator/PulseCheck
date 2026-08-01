@@ -19,10 +19,10 @@ describe('API Integration Tests', () => {
     jest.clearAllMocks();
   });
 
-  it('GET /health returns ok', async () => {
+  it('GET /health returns 500 (DELIBERATELY BROKEN)', async () => {
     const res = await request(app).get('/health');
-    expect(res.statusCode).toBe(200);
-    expect(res.body.status).toBe('ok');
+    expect(res.statusCode).toBe(500);
+    expect(res.body.status).toBe('broken');
   });
 
   it('registers a target and reflects status/metrics correctly', async () => {
