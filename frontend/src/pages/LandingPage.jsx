@@ -34,17 +34,12 @@ function LandingPage() {
           </a>
         </div>
         
-        <div className="w-full max-w-5xl rounded-xl border border-outline-variant/50 bg-surface-container-lowest p-2 shadow-2xl relative overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none"></div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-surface-container-low border-b border-outline-variant/50 rounded-t-lg">
-            <div className="w-3 h-3 rounded-full bg-error"></div>
-            <div className="w-3 h-3 rounded-full bg-tertiary-container"></div>
-            <div className="w-3 h-3 rounded-full bg-secondary"></div>
-          </div>
+        <div className="w-full max-w-6xl relative group mt-8">
+          <div className="absolute inset-0 bg-primary/10 blur-[100px] -z-10 rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
           <img 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlRmIdRwkdcPfuCeqJ2g3yK4E3cp0tc0JJJOagSusWwe7vIn9Rh9W-ZQ8v0EtBJwGnc7EQgl1F0IQGN2mILtGv6N-NoFTWrfJ4LfSuYhNNsVDB-efctkHfBH3vAhMLRbSiVfIcVYrRRIuHcq6kUBlGyEaEui6C2yohutmNOfx55vZvwg9JGtyJsQBxMCJ43-D-O8A334PnrVbV_8VaQBHAFp7JhJfTb2IyqOShhZyK1ZA6saI2kWgj" 
-            alt="PulseCheck Dashboard Screenshot" 
-            className="w-full h-auto rounded-b-lg opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+            src="/dashboard-mockup.png" 
+            alt="PulseCheck Dashboard Screenshot on MacBook Pro" 
+            className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] opacity-95 group-hover:opacity-100 transition-opacity duration-300"
           />
         </div>
       </section>
