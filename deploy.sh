@@ -35,7 +35,7 @@ docker compose up -d
 echo "Waiting for containers to boot..."
 sleep 5
 
-HEALTH_CHECK_URL="http://localhost:3000/health"
+HEALTH_CHECK_URL="http://host.docker.internal:3000/health"
 MAX_RETRIES=7
 RETRY_DELAY=5
 SUCCESS=false
