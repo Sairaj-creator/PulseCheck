@@ -78,7 +78,7 @@ function LandingPage() {
                 <li className="flex items-center text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary mr-3 text-base">check_circle</span>
                   <span className="text-secondary w-24">Test</span>
-                  <span className="text-outline text-xs">coverage: 92%</span>
+                  <span className="text-outline text-xs">coverage: 82%</span>
                 </li>
                 <li className="flex items-center text-on-surface-variant">
                   <span className="material-symbols-outlined text-secondary mr-3 text-base">check_circle</span>

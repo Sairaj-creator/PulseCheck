@@ -45,7 +45,7 @@ function Dashboard() {
     <div className="bg-background text-on-surface font-body-md h-screen flex overflow-hidden">
       <Sidebar />
       <main className="ml-60 flex-1 flex flex-col h-full bg-background overflow-y-auto">
-        <Header />
+        <Header metrics={metrics} />
         
         <div className="p-container-padding flex-1 flex flex-col gap-stack-lg max-w-7xl mx-auto w-full">
           {/* Add Target Card */}
