@@ -6,6 +6,11 @@ RUN apk add --no-cache python3 make g++
 
 WORKDIR /usr/src/app
 
+# Tell node-gyp to use the locally shipped Node headers instead of downloading
+# from unofficial-builds.nodejs.org (which times out in this build environment).
+# node:22-alpine ships headers at /usr/local/include/node — nodedir points there.
+ENV npm_config_nodedir=/usr/local
+
 COPY package*.json ./
 RUN npm install --production
 
