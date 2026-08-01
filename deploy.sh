@@ -77,6 +77,7 @@ else
     docker compose up -d
     
     echo "Rollback complete (containers started with old SHA). Note: Pipeline will still fail."
+    touch .rollback_occurred
   else
     echo "No last_good_sha.txt found. Cannot roll back. System is down!"
   fi
