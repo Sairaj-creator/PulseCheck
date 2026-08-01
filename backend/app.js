@@ -7,9 +7,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Liveness check for the app itself (DELIBERATELY BROKEN FOR ROLLBACK TEST)
+// Liveness check for the app itself
 app.get('/health', (req, res) => {
-  res.status(500).json({ status: 'broken' });
+  res.status(200).json({ status: 'ok' });
 });
 
 // Register a URL to monitor
