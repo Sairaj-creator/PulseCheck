@@ -29,14 +29,19 @@ async function pingTarget(target) {
   let responseTimeMs = 0;
 
   try {
-    const response = await axios.get(target.url, { timeout: 5000 });
-    if (response.status >= 200 && response.status < 400) {
-      success = true;
-    }
-    responseTimeMs = Date.now() - start;
+    const response = await axios.get(target.url, {
+      timeout: 10000,
+      maxRedirects: 5,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; PulseCheck/1.0; +https://github.com/Sairaj-creator/PulseCheck)'
+      },
+      validateStatus: (status) => status < 500  // treat 2xx/3xx/4xx as 'up', only 5xx is down
+    });
+    success = response.status < 500;
+    responseTimeMs = Math.max(0, Date.now() - start);
   } catch (err) {
     success = false;
-    responseTimeMs = Date.now() - start;
+    responseTimeMs = Math.max(0, Math.min(Date.now() - start, 10000)); // clamp 0..timeout
   }
 
   // Record the check

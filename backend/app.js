@@ -59,14 +59,18 @@ app.get('/metrics', (req, res) => {
     
     let uptime_percent = 0;
     let avg_response_time_ms = 0;
-    let recent_checks = checks.map(c => c.response_time_ms).reverse();
+    let recent_checks = checks.map(c => c.success ? c.response_time_ms : null).reverse();
 
     if (checks.length > 0) {
       const passed = checks.filter(c => c.success === 1).length;
       uptime_percent = (passed / checks.length) * 100;
       
-      const totalTime = checks.reduce((sum, c) => sum + c.response_time_ms, 0);
-      avg_response_time_ms = totalTime / checks.length;
+      // Only average over successful checks so failed/timeout values don't skew the average
+      const successfulChecks = checks.filter(c => c.success === 1);
+      if (successfulChecks.length > 0) {
+        const totalTime = successfulChecks.reduce((sum, c) => sum + c.response_time_ms, 0);
+        avg_response_time_ms = totalTime / successfulChecks.length;
+      }
     }
 
     return {
