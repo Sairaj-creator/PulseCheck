@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function LandingPage() {
   return (
-    <main className="max-w-7xl mx-auto px-gutter py-stack-lg flex flex-col gap-32 h-screen overflow-y-auto bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+    <main className="max-w-7xl mx-auto px-gutter py-stack-lg flex flex-col gap-32 font-body-md overflow-x-hidden">
       {/* 1. Hero Section */}
       <section className="flex flex-col items-center justify-center text-center mt-24">
         <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-outline-variant/30 bg-surface-container-low mb-8">
