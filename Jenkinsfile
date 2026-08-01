@@ -84,6 +84,12 @@ pipeline {
         failure {
             script {
                 def isRollback = fileExists('.rollback_occurred')
+                
+                // Cleanup immediately so a Slack network failure doesn't leave the flag stale
+                if (isRollback) {
+                    sh "rm -f .rollback_occurred"
+                }
+
                 def message = isRollback 
                     ? "🔄 Deploy Failed & Rolled Back: ${env.JOB_NAME} [${env.BUILD_NUMBER}]"
                     : "🚨 Jenkins Pipeline Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]"
@@ -94,10 +100,6 @@ pipeline {
                 }
                 """
                 sh "curl -X POST -H 'Content-type: application/json' --data '${payload}' \${SLACK_WEBHOOK_URL}"
-                
-                if (isRollback) {
-                    sh "rm -f .rollback_occurred"
-                }
             }
         }
     }
